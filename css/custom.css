@@ -8,6 +8,20 @@
 	left: 50%;
 	margin-left: -15px;
 }
+.gol_local {
+    position: relative;
+    left: -45px;
+    top: 12px;
+    font-size: 14px;
+    font-weight: bolder;
+}
+.gol_visitante {
+    position: relative;
+    left: -5px;
+    top: 12px;
+    font-size: 14px;
+    font-weight: bolder;
+}
 .juego_balon {
     height: 100% !important;
     margin: 0 auto 0 -19px !important;
