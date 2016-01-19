@@ -364,7 +364,11 @@ angular.module('app')
                        deps: ['$ocLazyLoad','uiLoad',
                         function( $ocLazyLoad ,uiLoad ){
                             return uiLoad.load('js/controllers/signup.js').then(function(){
-                                return $ocLazyLoad.load('toaster');
+                                return $ocLazyLoad.load(['toaster','angularFileUpload']).then(
+                              function(){
+                                 return $ocLazyLoad.load('js/controllers/file-upload.js');
+                              }
+                          );
                             } 
                                     );
                       }]

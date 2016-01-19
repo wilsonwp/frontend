@@ -14,17 +14,11 @@ app.controller('SigninFormController', ['$scope', '$http', '$state','$auth','toa
     $scope.authError = null;
      $scope.respuesta = null;
     try{
-       $auth.login(credentials).then(function(result) {
-                $scope.toaster = {
-                type: 'success',
-                title: 'Bienvenido',
-                text: ''
-       
-                        };
-                $scope.pop();
+        $auth.login(credentials).then(function(result) {
                 $state.go('app.partidos', {});
                 
-            }); 
+              
+            });  
     }catch(error){
          $scope.pop();
     }

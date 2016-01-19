@@ -1,8 +1,9 @@
 'use strict';
 
 // signup controller
-app.controller('SignupFormController', ['$scope', '$http','$state','SignResource','toaster', function($scope, $http, $state,SignResource,toaster) {
+app.controller('SignupFormController', ['$scope', '$http','$state','SignResource','toaster','multipartForm', function($scope, $http, $state,SignResource,toaster,multipartForm) {
     $scope.user = {};
+    $scope.customer = {};
     $scope.toaster = {
         type: 'success',
         title: 'Exito',
@@ -10,16 +11,9 @@ app.controller('SignupFormController', ['$scope', '$http','$state','SignResource
     };
     $scope.authError = null;
     $scope.signup = function($response) {
-            try {
-                SignResource.save($scope.user);
-                $scope.pop();
-                $state.go('access.signin', {});
-            }catch(err){
-                $scope.toaster.type='error';
-                $scope.toaster.title='error';
-                $scope.toaster.text='Ha ocurrido un Error al Registrar';
-                $scope.pop();
-            }
+            console.log($scope.user);
+            var uploadUrl='http://localhost:8000/hinchas';
+            multipartForm.post(uploadUrl,$scope.user);
             
         
     }

@@ -9,7 +9,7 @@
         </div>
           
           
-        <form name="form" class="form-validation">
+          <form name="form" class="form-validation" enctype="multipart/form-data">
             
           <div class="text-danger wrapper text-center" ng-show="authError">
               {{authError}}
@@ -22,6 +22,11 @@
             <div class="list-group-item">
               <input type="email" placeholder="Email" class="form-control no-border" ng-model="user.email" required>
             </div>
+              <div class="list-group-item">
+              <input type="file" class="form-control no-border" ng-model="user.path" file-model="user.path" >
+            </div>
+              
+             
               <div class="list-group-item">
                 <input type="text" class="form-control no-border" placeholder="Telefono: (XXX) XXXX XXX" ng-model="user.telefono" required>
               </div> 
