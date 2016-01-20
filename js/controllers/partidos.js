@@ -9,13 +9,17 @@ app
         PartidosResource.save($scope.Comentario);
     }
 })
-.controller('GetPartidosCtrl', function($scope,$sce,PartidosResource,$http) {
-   $scope.partidos= PartidosResource.query();
+.controller('GetPartidosCtrl', function($scope,$sce,PartidosResource,$http,$timeout) {
+    $scope.partidos={};
+    var init = function()
+     {
+          $scope.partidos= PartidosResource.query();
+            $timeout(init, 5000);
+          
+     }
+     init();
    console.log($scope.partidos);
-   $scope.formVisibility = false;
-   $scope.getGoles = function(partido_id,equipo_id){
-      
-   }
+   $scope.formVisibility = false;  
    $scope.show_timeline = function(comentarios){
        if($scope.formVisibility == true){
            $scope.formVisibility = false
