@@ -1,4 +1,9 @@
-<div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
+<div id="video-container">
+    <video id="video_background" preload="auto" autoplay="autoplay" loop="true" class="class_video_fondo"><source src="video/video.webm" type="video/webm"><source src="video/video.mp4" type="video/mp4">
+    bgvideo
+    </video>
+</div>
+<div class="login container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
   <a href class="navbar-brand block m-t">{{app.name}}</a>
   <div class="m-b-lg">
   <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
