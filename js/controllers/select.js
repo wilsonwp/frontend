@@ -31,7 +31,7 @@ app.filter('propsFilter', function() {
         return out;
     };
 })
-app.controller('SelectCtrl', function($scope, $http, $timeout) {
+app.controller('SelectCtrl', function($scope, $http, $timeout,EquiposResource) {
         $scope.disabled = undefined;
         $scope.searchEnabled = undefined;
 
@@ -99,6 +99,7 @@ app.controller('SelectCtrl', function($scope, $http, $timeout) {
         };
 
         $scope.person = {};
+        $scope.resultados = EquiposResource.query();
         $scope.people = [
         { name: 'Adam',      email: 'adam@email.com',      age: 12, country: 'United States' },
         { name: 'Amalie',    email: 'amalie@email.com',    age: 12, country: 'Argentina' },
@@ -111,6 +112,7 @@ app.controller('SelectCtrl', function($scope, $http, $timeout) {
         { name: 'Michael',   email: 'michael@email.com',   age: 15, country: 'Colombia' },
         { name: 'Nicolás',   email: 'nicolas@email.com',    age: 43, country: 'Colombia' }
         ];
+        console.log($scope.people);
 
         $scope.availableColors = ['Red','Green','Blue','Yellow','Magenta','Maroon','Umbra','Turquoise'];
 
@@ -131,8 +133,8 @@ app.controller('SelectCtrl', function($scope, $http, $timeout) {
           $scope.addresses = response.data.results;
         });
         };
-
-        $scope.country = {};
+      
+      $scope.country = {};
         $scope.countries = [ // Taken from https://gist.github.com/unceus/6501985
         {name: 'Afghanistan', code: 'AF'},
         {name: 'Åland Islands', code: 'AX'},

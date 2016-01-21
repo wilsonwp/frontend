@@ -21,6 +21,7 @@
         <input type="text" name="nombre" placeholder="Nombre" class="form-control" ng-model="user.nombre" required ng-change="step.nombre.$valid ? (steps.percent=30) : (steps.percent=10)">
         <p>Telefono:</p>
         <input type="text" name="telefono" placeholder="Telefono" class="form-control" ng-model="user.telefono" required ng-change="step.telefono.$valid ? (steps.percent=30) : (steps.percent=40)">
+        
         <p>Fecha de Nacimiento:</p>
         <div class="list-group-item" ng-controller="DatepickerDemoCtrl">
             <div class="input-group w-md">
@@ -29,7 +30,20 @@
                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
             </div>
-          </div> 
+          </div>
+        <p>Sexo: </p>
+            Masculino:
+            <label class="i-switch bg-primary m-t-xs m-r">
+                <input type="radio" name='switch' value="Masculino" ng-model="user.sexo" checked>
+              <i></i>
+            </label>
+            Femenino:
+            <label class="i-switch bg-warning m-t-xs m-r">
+                
+                <input type="radio" value="Femenino" ng-model="user.sexo" name='switch'>
+              <i></i>
+            </label>
+            <p></p>
         <p>Contraseña:</p>
         
                   <input type="password" placeholder="Contraseña" class="form-control" name="password" ng-model="user.password" required >   
@@ -86,7 +100,13 @@
     </tab>
     <tab heading="Paso 3" disabled="step2.$invalid" active="steps.step3" select="steps.percent=60">
       <p class="m-b">Ultimo Paso Terminos de Licencia.</p>
+      
       <progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+      <p>Equipo de su Preferencia</p>
+      <select name="equipo_id" id="equipo_id" theme="bootstrap" class="form-control"  ng-model="user.equipo_id" style="min-width: 300px;">
+          <option value="{{equipo.id}}" ng-repeat="equipo in equipos">{{equipo.nombre_equipo}}</option>
+       </select>
+      <p>Licencia</p>
       <div ng-controller="ModalDemoCtrl" class="panel b-a">
           <script type="text/ng-template" id="myModalContent.html">
             <div ng-include="'tpl/modal.html'"></div>

@@ -364,9 +364,9 @@ angular.module('app')
                        deps: ['$ocLazyLoad','uiLoad',
                         function( $ocLazyLoad ,uiLoad ){
                             return uiLoad.load('js/controllers/signup.js').then(function(){
-                                return $ocLazyLoad.load(['toaster','angularFileUpload','ngImgCrop']).then(
+                                return $ocLazyLoad.load(['toaster','angularFileUpload','ngImgCrop','ui.select']).then(
                               function(){
-                                 return $ocLazyLoad.load(['js/controllers/file-upload.js','js/controllers/imgcrop.js']);
+                                 return $ocLazyLoad.load(['js/controllers/file-upload.js','js/controllers/imgcrop.js','js/controllers/select.js']);
                               }
                           );
                             } 

@@ -1,8 +1,9 @@
 'use strict';
 
 // signup controller
-app.controller('SignupFormController', ['$scope', '$http','$state','SignResource','toaster','multipartForm', function($scope, $http, $state,SignResource,toaster,multipartForm) {
+app.controller('SignupFormController', ['$scope', '$http','$state','SignResource','toaster','multipartForm','EquiposResource', function($scope, $http, $state,SignResource,toaster,multipartForm,EquiposResource) {
     $scope.user = {};
+    $scope.equipos = EquiposResource.query();
     $scope.customer = {};
     $scope.toaster = {
         type: 'success',
@@ -21,6 +22,8 @@ app.controller('SignupFormController', ['$scope', '$http','$state','SignResource
      $scope.pop = function(){
         toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
     };
+    
+   
 
   }])
  ;
