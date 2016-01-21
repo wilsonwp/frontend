@@ -14,7 +14,7 @@ app
     var init = function()
      {
           $scope.partidos= PartidosResource.query();
-            $timeout(init, 5000);
+    
           
      }
      init();
