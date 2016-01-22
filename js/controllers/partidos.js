@@ -32,7 +32,11 @@ app
            $scope.comentarios = comentarios;
              console.log(comentarios);
              
+<<<<<<< HEAD
           Pusher.subscribe('comentarios', 'updated', function (comentario) {
+=======
+          Pusher.subscribe('comentarios1', 'updated', function (comentario) {
+>>>>>>> d33cecade382a7d95226875606c8576e196108e6
     // an item was updated. find it in our list and update it.
         for (var i = 0; i < $scope.comentarios.length; i++) {
              if ($scope.comentarios[i].id === comentario.id) {
