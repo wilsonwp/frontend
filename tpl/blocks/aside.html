@@ -7,17 +7,17 @@
     <div class="clearfix hidden-xs text-center hide show" id="aside-user">
       <div class="dropdown wrapper" dropdown>
         <a ui-sref="app.page.profile">
-          <span class="thumb-lg w-auto-folded avatar m-t-sm">
-            <img src="img/a0.jpg" class="img-full" alt="...">
+          <span class="thumb-lg w-auto-folded avatar m-t-sm" ng-repeat="res in usuario.nombre">
+            <img src="http://localhost:8000/logos/{{res.hincha.path}}" class="img-full" alt="...">
           </span>
         </a>
         <a href class="dropdown-toggle hidden-folded" dropdown-toggle>
           <span class="clear">
-            <span class="block m-t-sm">
-              <strong class="font-bold text-lt">John.Smith</strong> 
+              <span class="block m-t-sm" ng-repeat="res in usuario.nombre">
+              <strong class="font-bold text-lt">{{res.hincha.nombre}}</strong> 
               <b class="caret"></b>
             </span>
-            <span class="text-muted text-xs block">Art Director</span>
+            <span class="text-muted text-xs block">{{usuario.email}}</span>
           </span>
         </a>
         <!-- dropdown -->
@@ -25,25 +25,25 @@
           <li class="wrapper b-b m-b-sm bg-info m-t-n-xs">
             <span class="arrow top hidden-folded arrow-info"></span>
             <div>
-              <p>300mb of 500mb used</p>
+              <p>Tiempo Conectado</p>
             </div>
             <progressbar value="60" type="white" class="progress-xs m-b-none dker"></progressbar>
           </li>
           <li>
-            <a href>Settings</a>
+            <a href>Configuracion</a>
           </li>
           <li>
-            <a ui-sref="app.page.profile">Profile</a>
+            <a ui-sref="app.page.profile">Perfil</a>
           </li>
           <li>
             <a href>
               <span class="badge bg-danger pull-right">3</span>
-              Notifications
+              Notificaciones
             </a>
           </li>
           <li class="divider"></li>
           <li>
-            <a ui-sref="access.signin">Logout</a>
+            <a ui-sref="logout">Cerrar Sesión</a>
           </li>
         </ul>
         <!-- / dropdown -->
