@@ -351,12 +351,19 @@ angular.module('app')
                       deps: ['$ocLazyLoad','uiLoad',
                         function( $ocLazyLoad ,uiLoad ){
                             return uiLoad.load('js/controllers/signin.js').then(function(){
-                                return $ocLazyLoad.load('toaster');
+                                return $ocLazyLoad.load('toaster').then(
+                              function(){
+                                 return $ocLazyLoad.load('js/controllers/toaster.js');
+                              });
                             } 
                                     );
                       }]
                   }
+              }).state('logout', {
+                  controller: 'LogoutCtrl',
+                  
               })
+              
               .state('access.signup', {
                   url: '/signup',
                   templateUrl: 'tpl/page_signup.html',
@@ -366,7 +373,7 @@ angular.module('app')
                             return uiLoad.load('js/controllers/signup.js').then(function(){
                                 return $ocLazyLoad.load(['toaster','angularFileUpload','ngImgCrop','ui.select']).then(
                               function(){
-                                 return $ocLazyLoad.load(['js/controllers/file-upload.js','js/controllers/imgcrop.js','js/controllers/select.js']);
+                                 return $ocLazyLoad.load(['js/controllers/file-upload.js','js/controllers/imgcrop.js','js/controllers/select.js','js/controllers/toaster.js']);
                               }
                           );
                             } 
@@ -550,6 +557,9 @@ angular.module('app')
                     url: '/playlist/{fold}',
                     templateUrl: 'tpl/music.playlist.html'
                 })
+                
       }
+      
     ]
+            
   );

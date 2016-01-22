@@ -3,14 +3,20 @@
 /* Controllers */
 
 angular.module('app')
-  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window', 
-    function(              $scope,   $translate,   $localStorage,   $window ) {
+  .controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window','ProfileResource', 
+    function(              $scope,   $translate,   $localStorage,   $window,ProfileResource ) {
       // add 'ie' classes to html
       var isIE = !!navigator.userAgent.match(/MSIE/i);
       isIE && angular.element($window.document.body).addClass('ie');
       isSmartDevice( $window ) && angular.element($window.document.body).addClass('smart');
 
       // config
+      var resultado = ProfileResource.query();
+      console.log(resultado);
+      $scope.usuario = {
+          email: localStorage.getItem('email'),
+          nombre: resultado
+      }
       $scope.app = {
         name: 'La Hinchada',
         version: '1.3.3',
