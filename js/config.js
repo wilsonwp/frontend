@@ -28,14 +28,7 @@ angular.module('app')
     $translateProvider.preferredLanguage('en');
     // Tell the module to store the language in the local storage
     $translateProvider.useLocalStorage();
-  }]).config(['PusherServiceProvider',
-  function(PusherServiceProvider) {
-    PusherServiceProvider
-    .setToken('266bc3fa36806eff8b48')
-    .setOptions({})
-    .setPusherUrl('http://localhost:8000/');
-  }
-]).config(function($authProvider) {
+  }]).config(function($authProvider) {
 
     $authProvider.facebook({
       clientId: 'Facebook App ID'
