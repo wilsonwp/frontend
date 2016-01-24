@@ -16,6 +16,5 @@ angular.module('app', [
     'oc.lazyLoad',
     'pascalprecht.translate',
     'satellizer',
-    'ngLocale',
-    'doowb.angular-pusher'
+    'ngLocale'
 ])

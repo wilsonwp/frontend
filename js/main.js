@@ -12,7 +12,6 @@ angular.module('app')
 
       // config
       var resultado = ProfileResource.query();
-      console.log(resultado);
       $scope.usuario = {
           email: localStorage.getItem('email'),
           nombre: resultado
