@@ -32,7 +32,40 @@ app
        }
            $scope.comentarios = comentarios;
              
+<<<<<<< HEAD
   
+=======
+<<<<<<< HEAD
+          Pusher.subscribe('comentarios', 'updated', function (comentario) {
+=======
+          Pusher.subscribe('comentarios1', 'updated', function (comentario) {
+>>>>>>> d33cecade382a7d95226875606c8576e196108e6
+    // an item was updated. find it in our list and update it.
+        for (var i = 0; i < $scope.comentarios.length; i++) {
+             if ($scope.comentarios[i].id === comentario.id) {
+             $scope.comentarios[i] = comentario;
+        break;
+      }
+       var recibeComentarios = function () {
+  // get a list of items from the api located at '/api/items'
+        console.log('getting items');
+        $http.get('/api/items')
+            .success(function (items) {
+            $scope.items = items;
+    }
+  );
+};
+    $scope.updateItem = function (item) {
+        console.log('updating item');
+        $http.post('/api/items', item);
+        };
+            //recibeComentarios();
+
+    
+    }
+    });
+
+>>>>>>> a2613844d506c7e189bb2655b7aab5147ee572c7
              
          $scope.trustAsHtml = function(value) {
             return $sce.trustAsHtml(value);
