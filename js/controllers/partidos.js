@@ -33,13 +33,17 @@ app
            $scope.comentarios = comentarios;
              
 <<<<<<< HEAD
+<<<<<<< HEAD
   
 =======
 <<<<<<< HEAD
-          Pusher.subscribe('comentarios', 'updated', function (comentario) {
 =======
-          Pusher.subscribe('comentarios1', 'updated', function (comentario) {
->>>>>>> d33cecade382a7d95226875606c8576e196108e6
+
+>>>>>>> 56386d71692c2b973dd60b591488eff222d319a8
+          Pusher.subscribe('comentarios', 'updated', function (comentario) {
+
+          //Pusher.subscribe('comentarios1', 'updated', function (comentario) {
+
     // an item was updated. find it in our list and update it.
         for (var i = 0; i < $scope.comentarios.length; i++) {
              if ($scope.comentarios[i].id === comentario.id) {
@@ -65,7 +69,11 @@ app
     }
     });
 
+<<<<<<< HEAD
 >>>>>>> a2613844d506c7e189bb2655b7aab5147ee572c7
+=======
+
+>>>>>>> 56386d71692c2b973dd60b591488eff222d319a8
              
          $scope.trustAsHtml = function(value) {
             return $sce.trustAsHtml(value);
