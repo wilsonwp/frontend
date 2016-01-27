@@ -39,7 +39,17 @@ angular.module('app')
               .state('app.partidos', {
                   url: '/partidos',
                   templateUrl: 'tpl/partidos.html',
-                  controller: 'GetPartidosCtrl'
+                  controller: 'GetPartidosCtrl',
+                  resolve: {
+                      deps: ['$ocLazyLoad',
+                        function( $ocLazyLoad){
+                          return $ocLazyLoad.load('toaster').then(
+                              function(){
+                                 return $ocLazyLoad.load('js/controllers/toaster.js');
+                              }
+                          );
+                      }]
+                  }
                   
               })
               .state('app.dashboard-v2', {

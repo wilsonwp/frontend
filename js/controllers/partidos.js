@@ -9,8 +9,18 @@ app
         PartidosResource.save($scope.Comentario);
     }
 })
-.controller('GetPartidosCtrl', function($scope,$sce,PartidosResource,$http,$timeout){
+.controller('GetPartidosCtrl', function($scope,$sce,PartidosResource,$http,$timeout,$rootScope,toaster){
     $scope.partidos={};
+    $scope.comentarios={};
+    $scope.texto='';
+    $scope.pusher={};
+    $scope.channel={};
+    $scope.data={};
+    $scope.toaster = {
+        type: 'success',
+        title: '',
+        text: ''
+    };
  
     var init = function()
      {
@@ -18,62 +28,52 @@ app
     
           
      }
+     $scope.pop = function(){
+        toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+    };
+     
      init();
-   console.log($scope.partidos);
-   
+
    $scope.formVisibility = false;  
-   $scope.show_timeline = function(comentarios){
-       //var pusher = new Pusher('266bc3fa36806eff8b48');
-       
-       if($scope.formVisibility == true){
-           $scope.formVisibility = false
-       }else{
-           $scope.formVisibility = true 
+   
+   //
+   $scope.show_timeline = function(partido_id){
+       console.log(partido_id);
+       $scope.comentarios = {};
+          //$scope.comentariosBd = res;
+    var retrieveComentarios = function () {
+    $http.get('http://localhost:8000/comentariosPartido/'+partido_id)
+    	.success(function (items) {
+	      $scope.comentarios = items;
+              console.log($scope.comentarios);
+      });
+  };
+                retrieveComentarios();
+       if($scope.formVisibility == false){
+         $scope.formVisibility = true
        }
-           $scope.comentarios = comentarios;
-             
-<<<<<<< HEAD
-<<<<<<< HEAD
-  
-=======
-<<<<<<< HEAD
-=======
+                            Pusher.log = function(message) {
+                         if (window.console && window.console.log) {
+                           window.console.log(message);
+                         }
+                       };
 
->>>>>>> 56386d71692c2b973dd60b591488eff222d319a8
-          Pusher.subscribe('comentarios', 'updated', function (comentario) {
+                       $scope.pusher = new Pusher('266bc3fa36806eff8b48', {
+                         encrypted: false
+                       });
+                       $scope.channel = $scope.pusher.subscribe('comentarios_canal');
+                       $scope.channel.bind('ComentarioCreado', function(data) {
+                         //console.log(data.comentario);
+                         //console.log($scope.comentariosBd);
+                        // location.reload();
+                           // $scope.comentarios.push(data.comentario);
+                            retrieveComentarios();
+                            $scope.toaster.title='Nuevo Suceso';
+                            $scope.toaster.text=data.comentario.contenido;
+                            $scope.pop();
+                            
+                       });
 
-          //Pusher.subscribe('comentarios1', 'updated', function (comentario) {
-
-    // an item was updated. find it in our list and update it.
-        for (var i = 0; i < $scope.comentarios.length; i++) {
-             if ($scope.comentarios[i].id === comentario.id) {
-             $scope.comentarios[i] = comentario;
-        break;
-      }
-       var recibeComentarios = function () {
-  // get a list of items from the api located at '/api/items'
-        console.log('getting items');
-        $http.get('/api/items')
-            .success(function (items) {
-            $scope.items = items;
-    }
-  );
-};
-    $scope.updateItem = function (item) {
-        console.log('updating item');
-        $http.post('/api/items', item);
-        };
-            //recibeComentarios();
-
-    
-    }
-    });
-
-<<<<<<< HEAD
->>>>>>> a2613844d506c7e189bb2655b7aab5147ee572c7
-=======
-
->>>>>>> 56386d71692c2b973dd60b591488eff222d319a8
              
          $scope.trustAsHtml = function(value) {
             return $sce.trustAsHtml(value);
@@ -318,6 +318,16 @@ app
                     
                     
         }
+        }
+        
+        $scope.loadData = function(){
+            // get a list of items from the api located at '/api/items'
+                console.log('getting items');
+            $http.get('/api/items')
+            .success(function (items) {
+	      $scope.items = items;
+      });
+
         }
        
        
