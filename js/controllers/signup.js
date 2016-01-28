@@ -1,10 +1,10 @@
 'use strict';
 
 // signup controller
-app.controller('SignupFormController', ['$scope', '$http','$state','SignResource','toaster','multipartForm','EquiposResource', function($scope, $http, $state,SignResource,toaster,multipartForm,EquiposResource) {
+app.controller('SignupFormController', ['$scope', '$http','$state','SignResource','toaster','multipartForm','EquiposResource','FlashResource', function($scope, $http, $state,SignResource,toaster,multipartForm,EquiposResource,FlashResource) {
     $scope.user = {};
     $scope.equipos = EquiposResource.query();
-    $scope.customer = {};
+    $scope.msgInput="";
     $scope.toaster = {
         type: 'success',
         title: 'Exito',

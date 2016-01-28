@@ -21,6 +21,7 @@ app
         title: '',
         text: ''
     };
+    
  
     var init = function()
      {
@@ -34,7 +35,26 @@ app
      
      init();
 
-   $scope.formVisibility = false;  
+   $scope.formVisibility = false;
+   
+    Pusher.log = function(message) {
+                         if (window.console && window.console.log) {
+                           window.console.log(message);
+                         }
+                       };
+   
+    $scope.pusher = new Pusher('266bc3fa36806eff8b48', {
+                         encrypted: false
+                       });
+                       $scope.channel = $scope.pusher.subscribe('resultados_canal');
+                       $scope.channel.bind('ResultadoActualizado', function(data) {
+                         //console.log(data.comentario);
+                         //console.log($scope.comentariosBd);
+                        // location.reload();
+                           // $scope.comentarios.push(data.comentario);
+                            init();
+                            
+                       });
    
    //
    $scope.show_timeline = function(partido_id){
@@ -319,19 +339,25 @@ app
                     
         }
         }
-        
-        $scope.loadData = function(){
-            // get a list of items from the api located at '/api/items'
-                console.log('getting items');
-            $http.get('/api/items')
-            .success(function (items) {
-	      $scope.items = items;
-      });
-
-        }
+       
        
        
    }
+    $scope.muestraLocal = function(partido){
+            $http.get('http://localhost:8000/muestraLocal/'+partido)
+    	.success(function (res) {
+	      return res.goles_local;
+      });
+            
+        }
+        $scope.muestraVisitante = function(partido){
+             $http.get('http://localhost:8000/muestraVisitante/'+partido)
+                .success(function (res) {
+	      return res.goles_visitante;
+      });
+            
+        }
+   
   
        
     
